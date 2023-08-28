@@ -25,6 +25,8 @@ import Tooltip from "@mui/material/Tooltip";
 import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import Link from "next/link";
+import { Stack, Button } from "@mui/material";
 
 const drawerWidth = 240;
 
@@ -129,7 +131,7 @@ export default function PersistentDrawerLeft() {
               mr: 2,
               display: { xs: "none", md: "flex" },
               fontFamily: "sans-serif",
-              fontWeight: 500,
+              fontWeight: 400,
               letterSpacing: ".1rem",
               color: "inherit",
               textDecoration: "none",
@@ -139,7 +141,7 @@ export default function PersistentDrawerLeft() {
           </Typography>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 1.7}}>
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 1 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
@@ -194,23 +196,27 @@ export default function PersistentDrawerLeft() {
 
         {/* Sidebar */}
         <List>
-          {["Subscription", "Catalog", "Catagories", "Import"].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton href={`/admin/${text.toLowerCase()}`}>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
+          {["Subscription", "Catalog", "Catagories", "Import"].map(
+            (text, index) => (
+              <ListItem key={text} disablePadding>
+                <ListItemButton href={`/admin/${text.toLowerCase()}`}>
+                  <ListItemIcon>
+                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  </ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItemButton>
+              </ListItem>
+            )
+          )}
         </List>
         <Divider />
 
         <List>
           {["All mail", "Trash", "Spam"].map((text, index) => (
             <ListItem key={text} disablePadding>
-              <ListItemButton href={`/admin/${text.toLowerCase()}`}>
+              <ListItemButton>
+                {" "}
+                {/* href={`/admin/${text.toLowerCase()}`} */}
                 <ListItemIcon>
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                 </ListItemIcon>
@@ -219,10 +225,23 @@ export default function PersistentDrawerLeft() {
             </ListItem>
           ))}
         </List>
+        <Stack spacing={0} direction='column' sx={{
+          alignItems: 'flex-start' 
+          
+        }}>
+          <Button color="inherit">
+            <Link href="/admin">Admin</Link>
+          </Button>
+          <Button color="inherit">
+            <Link href="/admin/catagories">Catagories</Link>
+          </Button>
+          <Button color="inherit">
+            <Link href="/admin/catalog">Catalog</Link>
+          </Button>
+        </Stack>
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
-       
       </Main>
     </Box>
   );

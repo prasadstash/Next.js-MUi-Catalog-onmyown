@@ -98,7 +98,7 @@ export default function PersistentDrawerLeft() {
   };
   return (
     <Box sx={{ display: "flex" }}>
-      <CssBaseline />
+      {/* <CssBaseline /> */}
       <AppBar position="fixed" open={open}>
         <Toolbar>
           <IconButton
@@ -124,10 +124,9 @@ export default function PersistentDrawerLeft() {
           <Typography
             variant="h6"
             noWrap
-            component="a"
             href="/"
             sx={{
-              flexGrow: 1,
+              flexGrow: 0,
               mr: 2,
               display: { xs: "none", md: "flex" },
               fontFamily: "sans-serif",
@@ -137,11 +136,52 @@ export default function PersistentDrawerLeft() {
               textDecoration: "none",
             }}
           >
-            LeS Catalog
+            <Link href="/" underline="none">
+              LeS Catalog
+            </Link>
+
+            {/* <Button color="inherit">
+              <Link href="/">LeS Catalog</Link>
+            </Button> */}
+            {/* <Link href="/">LeS Catalog</Link> */}
+            {/* <Link href="/" underline="none">
+              Your Text Here
+            </Link> */}
+            
           </Typography>
-          <Box sx={{ flexGrow: 0 }}>
+
+          <Box
+            sx={{
+              flexGrow: 1,
+              p: 2,
+              fontFamily: "sans-serif",
+              fontWeight: 300,
+              letterSpacing: ".1rem",
+            }}
+          >
+            <nav>
+              <ul>
+                <Button color="inherit">
+                  <Link href="/admin">Admin</Link>
+                </Button>
+                <Button color="inherit">
+                  <Link href="/admin/catagories">Catagories</Link>
+                </Button>
+                <Button color="inherit">
+                  <Link href="/admin/catalog">Catalog</Link>
+                </Button>
+              </ul>
+            </nav>
+          </Box>
+          <Box>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 1 }}>
+              <IconButton
+                onClick={handleOpenUserMenu}
+                sx={{
+                  p: 1,
+                  alignContent: "flex-end",
+                }}
+              >
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
@@ -225,10 +265,14 @@ export default function PersistentDrawerLeft() {
             </ListItem>
           ))}
         </List>
-        <Stack spacing={0} direction='column' sx={{
-          alignItems: 'flex-start' 
-          
-        }}>
+        <Stack
+          spacing={0}
+          direction="column"
+          sx={{
+            alignItems: "flex-start",
+            border: 1,
+          }}
+        >
           <Button color="inherit">
             <Link href="/admin">Admin</Link>
           </Button>
